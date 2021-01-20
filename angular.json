@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularFormationApp"
+    }
+  },
+  "defaultProject": "AngularFormationApp",
+  "cli": {
+    "analytics": "104dee7f-c62d-4af1-9ab5-85deb45da48e"
+  }
 }

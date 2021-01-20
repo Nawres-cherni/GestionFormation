@@ -1,0 +1,176 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <h2>Admin</h2> 
+  <div class="spacer"></div>
+  <div class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto">
+        
+      <li class="nav-item active">
+        <a class="nav-link my-2 my-lg-0" href="home">Formateur List</a>
+      </li>
+       
+<li>
+<button (click)="logout()">logout</button>
+</li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<br><br>
+
+  <div class="container">
+      <div class="row justify-content-center p-2">
+          <h1>Angular 9 with Firebase crud app</h1>
+      </div>
+      <div class="form-group">
+          <input type="number" class="form-control" [(ngModel)]="formateurCin" placeholder="CIN">
+      </div>
+      <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="formateurNom" placeholder="Nom">
+      </div>
+      <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="formateurPrenom" placeholder="Prenom">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" [(ngModel)]="formateurEmail" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+      <input type="number" class="form-control" [(ngModel)]="formateurTelephone" placeholder="Telephone">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="formateurTarif" placeholder="Tarif">
+</div>
+
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="formateurPhoto" placeholder="Image">
+</div>
+
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="formateurCV" placeholder="CV">
+</div>
+
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="formateurSpecialite" placeholder="Speciaite">
+</div>
+
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="formateurPassword" placeholder="Password">
+</div>
+      <div class="form-group">
+          <button class="btn btn-primary" (click)="createFormateur()" [disabled]="!formateurNom || !formateurPrenom || !formateurEmail ||!formateurCin ||!formateurTelephone ||!formateurTarif ||!formateurPhoto ||!formateurCV || !formateurSpecialite || !formateurPassword ">Create Employee</button>
+      </div>
+      <div class="form-group">
+          <h4><b>{{message}}</b></h4>
+      </div>
+  
+      <div class="row p-2">
+          <div class="col-md-12 p-2 justify-content-center">
+              <h4>All Employee Data</h4>
+          </div>
+          
+          <div class="col-md-3" *ngFor="let item of formateur">
+              
+              <div class="card" *ngIf="!item.isedit; else elseBlock">
+                  <div class="card-body">
+                      <div class="card-title">
+                          Cin: {{item.cin}}
+                      </div>
+                      <div class="card-subtitle">
+                          Nom: {{item.nom}}
+                      </div>
+                      <div class="card-text">
+                         Prenom: {{item.prenom}}
+                      </div>
+                      <div class="card-text">
+                        Email: {{item.email}}
+                     </div>
+                     <div class="card-text">
+                      Telephone: {{item.telephone}}
+                   </div>
+                   <div class="card-text">
+                    Specilaté: {{item.specialite}}
+                 </div>
+                 <div class="card-text">
+                  Tarif: {{item.tarif}}
+               </div>
+               <div class="card-text">
+                Image: {{item.photo}}
+             </div>
+             <div class="card-text">
+              CV: {{item.cv}}
+           </div>
+           <div class="card-text">
+            Password: {{item.password}}
+         </div>
+
+                    
+                          <button (click)="EditFormateur(item)" class="btn btn-primary btn-xs">Edit Employee</button>
+                          <button (click)="DeleteFormateur(item.id)"  class="btn btn-danger btn-xs">Delete Employee</button>
+                     
+                  </div>
+              </div>
+  
+              <ng-template #elseBlock>
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="card-title">
+                              Edit Employee
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                  <input type="text" [(ngModel)]="item.editcin" class="form-control">
+                              </div>
+                                  <div class="col-md-12">
+                                      <input type="text" [(ngModel)]="item.editnom" class="form-control">
+                                  </div>
+                                  <div class="col-md-12">
+                                      <input type="number" [(ngModel)]="item.editprenom" class="form-control">
+                                  </div>
+                                  <div class="col-md-12">
+                                      <input type="text" [(ngModel)]="item.editemail" class="form-control">
+                                  </div>
+                                
+                                <div class="col-md-12">
+                                  <input type="text" [(ngModel)]="item.edittelephone" class="form-control">
+                              </div>
+                              <div class="col-md-12">
+                                <input type="text" [(ngModel)]="item.edittarif" class="form-control">
+                            </div>
+                            <div class="col-md-12">
+                              <input type="text" [(ngModel)]="item.editphoto" class="form-control">
+                          </div>
+                          <div class="col-md-12">
+                            <input type="text" [(ngModel)]="item.editcv" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                          <input type="text" [(ngModel)]="item.editspecialite" class="form-control">
+                      </div>
+                      <div class="col-md-12">
+                        <input type="text" [(ngModel)]="item.editpassword" class="form-control">
+                    </div>
+
+                              </div>
+                          </div>
+  
+                         
+                          <button class="btn btn-danger btn-xs" (click)="item.isedit = false">Cancel</button>
+                          <button class="btn btn-primary btn-xs" (click)="Updataformateur(item)">Update Employee</button>
+                      </div>
+                  </div>
+              </ng-template>
+  
+  
+  
+          </div>
+      </div>
+  
+  
+  </div>
